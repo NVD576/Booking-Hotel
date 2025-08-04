@@ -1,0 +1,137 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Danh sách phòng đã đặt{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-5 text-second font-weight-bold">Lịch sử đặt phòng</h1>
+    <!-- Table Section -->
+    <div class="table-responsive">
+        <table class="table table-bordered dark-mode">
+            <thead>
+            <tr>
+                <th scope="col" style="color: #f9f9f9;">STT</th>
+                <th scope="col" style="color: #f9f9f9;">Tên Khách Hàng</th>
+                <th scope="col" style="color: #f9f9f9;">Số Điện Thoại</th>
+                <th scope="col" style="color: #f9f9f9;">Ngày Đặt Phòng</th>
+                <th scope="col" style="color: #f9f9f9;">Ngày Nhận Phòng</th>
+                <th scope="col" style="color: #f9f9f9;">Ngày Trả Phòng</th>
+                <th scope="col" style="color: #f9f9f9;">Loại Khách</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for booking in bookings %}
+            <tr>
+                <th scope="row" style="color: #f9f9f9;">{{ loop.index }}</th>
+                <td>{{ booking.customer_name }}</td>
+                <td>{{ booking.customer_phone }}</td>
+                <td>{{ booking.booking_date }}</td>
+                <td>{{ booking.check_in_date }}</td>
+                <td>{{ booking.check_out_date }}</td>
+                <td>
+                    {% if booking.customer_type == 1 %}
+                    Nội địa
+                    {% else %}
+                    Nước ngoài
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% block styles %}
+<style>
+    h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);  /* Enhanced text shadow */
+    }
+
+    .table th, .table td {
+        text-align: center;
+        vertical-align: middle;
+        padding: 1rem;
+        font-size: 1.1rem;
+    }
+
+    /* Striped rows with smooth hover effect */
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: #f9f9f9;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #e9ecef;
+        transform: translateY(-5px);  /* Hover animation for rows */
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+    }
+
+    .table th {
+        background: linear-gradient(135deg, #007bff, #1e88e5);  /* Gradient header */
+        color: white;
+        font-weight: bold;
+        border-radius: 10px 10px 0 0;
+    }
+
+    .table-responsive {
+        margin-top: 2rem;
+    }
+
+    /* Adding glassmorphism effect to table */
+    .table {
+        background: rgba(255, 255, 255, 0.7);  /* Transparent background */
+        backdrop-filter: blur(12px);
+        border-radius: 12px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    /* Styling the table cells */
+    .table td, .table th {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Button Styling */
+    .btn {
+        background: linear-gradient(135deg, #42a5f5, #1e88e5);  /* Gradient button */
+        color: white;
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding: 12px 30px;
+        border-radius: 30px;
+        border: none;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn:hover {
+        transform: translateY(-3px);  /* Hover lift effect */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);  /* Enhanced shadow on hover */
+    }
+
+    .btn:focus {
+        outline: none;
+    }
+
+    /* Custom transition effects for table */
+    .table-striped tr {
+        transition: all 0.3s ease-in-out;
+    }
+
+    .table td {
+        font-size: 1rem;
+    }
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Optional JavaScript for interactive functionality
+    console.log("Danh sách phòng đã đặt.");
+</script>
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,153 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4 booking-title">Nhập mã thuê phòng</h2>
+        <div class="card-rent shadow-lg rounded-4 p-4 dark-mode">
+            <form id="bookingForm" method="POST" action="/rents">
+                <div class="form-group mb-3 dark-mode">
+                    <label for="bookingCode" class="form-label text-muted"
+                           style="font-weight: 500; font-size: 1rem">Mã thuê phòng</label>
+                    <input type="text" class="form-control form-control-lg border-0 shadow-sm rounded-3 p-3"
+                           id="bookingCode" name="maDatPhong" placeholder="Nhập mã thuê phòng" required>
+                </div>
+                <button type="submit" class="btn btn-gradient btn-lg w-100 text-white py-3">Xác nhận</button>
+            </form>
+        </div>
+
+    <div id="ticketContainer" class="mt-4"></div>
+</div>
+
+{% if data %}
+<div class="card-rent mt-5 shadow-lg p-4 rounded-4" style="margin-bottom:50px" id="bookingCard">
+    <h3 class="text-center mb-4 dark-mode" style="font-weight: 700;">Thông Tin Đặt Phòng</h3>
+    <form action="/save_export" method="POST">
+        <div class="booking-details mb-4 dark-mode">
+            <p><strong>Phòng:</strong><span name="room">{{ data.room }}</span></p>
+            <p><strong>Ngày Nhận Phòng:</strong> <span name="check_in_date"
+                                                       id="check_in_date">{{ data.check_in_date }}</span></p>
+            <p><strong>Ngày Trả Phòng:</strong> <span name="check_out_date">{{ data.check_out_date }}</span></p>
+            <p><strong>Ngày Đặt Phòng:</strong> <span name="booking_date">{{ data.booking_date }}</span></p>
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="button" id="generateTicketButton" class="btn btn-gradient btn-lg py-3 px-5"
+                    style="color: white">Lập Phiếu Thuê Phòng
+            </button>
+        </div>
+
+        <div id="customerInfo" style="display: none;" class="mt-4">
+            <h4 class="text-center mb-3 dark-mode" style="font-weight: 700;">Danh Sách Khách Hàng</h4>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>STT</th>
+                    <th>Tên Khách Hàng</th>
+                    <th>Số Điện Thoại</th>
+                    <th>Địa Chỉ</th>
+                    <th>CMND</th>
+                    <th>Loại Khách</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for customer in room_booked %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ customer.customer_name }}</td>
+                    <td>{{ customer.customer_phone }}</td>
+                    <td>{{ customer.customer_address }}</td>
+                    <td>{{ customer.customer_cmnd }}</td>
+                    <td>{{ customer.customer_type }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-center mt-4" id="saveExportButtonContainer" style="display: none;">
+            <button type="submit" id="saveExportButton" class="btn btn-gradient btn-lg py-3 px-5" style="color: white">
+                Lưu và Xuất Phiếu
+            </button>
+        </div>
+    </form>
+</div>
+{% else %}
+<p class="text-center text-danger mt-5">Không tìm thấy thông tin cho mã thuê phòng.</p>
+{% endif %}
+
+<style>
+    /* Style cho tiêu đề Nhập mã thuê phòng */
+.booking-title {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 2.6rem;
+        color: #2c3e50;
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 1.5rem; /* Tương đương với mb-4 */
+    }
+
+    .card-rent {
+        border-radius: 20px;
+        background: linear-gradient(135deg, #ffffff, #f9fafb);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        padding: 25px;
+        max-width: 800px;
+        margin: auto;
+    }
+
+    .btn-gradient {
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        border: none;
+        border-radius: 50px;
+        font-weight: 700;
+        transition: all 0.3s ease;
+    }
+
+    .btn-gradient:hover {
+        background: linear-gradient(135deg, #2575fc, #6a11cb);
+        transform: scale(1.05);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .table {
+        margin-top: 20px;
+    }
+
+    th {
+        background-color: #2575fc;
+        color: black;
+    }
+
+    td {
+        background-color: #f9f9f9;
+    }
+    .form-control {
+        background-color: #fff; /* White background for input fields */
+        color: #333; /* Dark text inside input */
+        border: 1px solid #ddd; /* Subtle border */
+    }
+
+    .form-control:focus {
+        border-color: #2575fc; /* Highlight the border on focus */
+        box-shadow: 0 0 5px rgba(37, 117, 252, 0.5); /* Soft shadow on focus */
+    }
+</style>
+
+<script>
+    document.getElementById('generateTicketButton').addEventListener('click', function () {
+        const customerInfo = document.getElementById('customerInfo');
+        const saveExportButtonContainer = document.getElementById('saveExportButtonContainer');
+
+        customerInfo.style.display = 'block'; // Hiển thị bảng danh sách khách hàng
+        saveExportButtonContainer.style.display = 'block'; // Hiển thị nút lưu và xuất phiếu
+        this.style.display = 'none'; // Ẩn nút lập phiếu thuê phòng
+    });
+
+    document.getElementById('saveExportButton').addEventListener('click', function () {
+        const bookingCard = document.getElementById('bookingCard');
+
+        bookingCard.style.display = 'none'; // Ẩn toàn bộ thông tin đặt phòng và bảng khách hàng
+    });
+</script>
+{% endblock %}

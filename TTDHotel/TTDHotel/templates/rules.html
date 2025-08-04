@@ -1,0 +1,138 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-5">Quy Định Khách Sạn</h1>
+
+    <!-- Quy định đặt phòng -->
+    <div class="card shadow-lg border-0 rounded-lg mb-4">
+        <div class="card-body d-flex align-items-center">
+            <i class="ri-calendar-check-line icon-large text-primary me-3"></i>
+            <div>
+                <h3 class="card-title">Đặt Phòng Khách Sạn</h3>
+                <p class="mb-0">Thời gian nhận phòng tối đa: <span class="highlight">{{ rules["dat_phong_khach_san"]["thoi_gian_nhan_phong_toi_da"] }} ngày</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quy định sức chứa phòng -->
+    <div class="card shadow-lg border-0 rounded-lg mb-4">
+        <div class="card-body d-flex align-items-center">
+            <i class="ri-group-line icon-large text-primary me-3"></i>
+            <div>
+                <h3 class="card-title">Sức Chứa Phòng</h3>
+                <p class="mb-0">Số khách tối đa mỗi phòng: <span class="highlight">{{ rules["suc_chua_phong"]["so_khach_toi_da"] }} khách</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quy định giá phòng -->
+    <div class="card shadow-lg border-0 rounded-lg mb-4">
+        <div class="card-body d-flex align-items-center">
+            <i class="ri-money-dollar-circle-line icon-large text-primary me-3"></i>
+            <div>
+                <h3 class="card-title">Giá Phòng</h3>
+                <ul class="list-unstyled mb-0">
+                    <li>Số khách cơ bản: <span class="highlight">{{ rules["gia_phong"]["so_khach_co_ban"] }} khách</span></li>
+                    <li>Phụ phí khách thêm: <span class="highlight">{{ rules["gia_phong"]["phu_phi_khach_them"] }} %</span></li>
+                    <li>Hệ số khách nước ngoài: <span class="highlight">{{ rules["gia_phong"]["he_so_khach_nuoc_ngoai"] }}</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    /* Container Styling */
+    .container {
+        max-width: 1200px;
+        padding: 15px;
+    }
+
+    /* Header Styling */
+    h1 {
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: #34495e;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 30px;
+    }
+
+    /* Card Styling */
+    .card {
+        background-color: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .card-body {
+        padding: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Title Styling */
+    h3.card-title {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: #2c3e50;
+    }
+
+    /* Icon Styling */
+    .icon-large {
+        font-size: 3rem;
+        color: #3498db;
+        flex-shrink: 0;
+    }
+
+    .icon-large:hover {
+        color: #e74c3c;
+        transform: scale(1.1);
+        transition: all 0.2s ease-in-out;
+    }
+
+    /* Highlight Text */
+    .highlight {
+        color: #e74c3c;
+        font-weight: 700;
+    }
+
+    /* List Styling */
+    ul {
+        padding-left: 0;
+        list-style-type: none;
+    }
+
+    li {
+        margin-bottom: 10px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2rem;
+        }
+
+        .card-body {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .icon-large {
+            margin-bottom: 15px;
+        }
+
+        h3.card-title {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+{% endblock %}

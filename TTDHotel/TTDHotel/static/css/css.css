@@ -1,0 +1,90 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
+:root {
+  --primary-color: #2c3855;
+  --primary-color-dark: #435681;
+  --text-white: #ffffff;
+  --text-light: #767268;
+  --extra-dark: #333333;
+  --white: #ffffff;
+  --max-width: 1200px;
+  --nav-color:#EFF0F2;
+}
+body {
+    background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+    font-family: 'Montserrat', sans-serif;
+    flex-direction: column;
+    justify-content: flex-start;
+    display: flex;
+    scroll-behavior: smooth;
+}
+.content {
+    padding-top: 62px;
+    flex: 1;
+}
+.footer {
+  padding: 60px;
+  background-color: var(--extra-dark);
+}
+
+.footer__container {
+  display: grid;
+  grid-template-columns: 2fr repeat(3, 1fr);
+  gap: 5rem;
+}
+
+.footer__col h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-white);
+}
+
+.footer__col h4 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-white);
+}
+
+.footer__col p {
+  margin-bottom: 1rem;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.footer__col p:hover {
+  color: var(--text-white);
+}
+.no-underline {
+    text-decoration: none;
+    color: inherit;
+}
+.no-underline:hover{
+    color: var(--text-white)
+}
+.footer__bar {
+  position: relative;
+  max-width: var(--max-width);
+  margin: auto;
+  padding: 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-light);
+  text-align: right;
+  overflow: hidden;
+}
+
+.footer__bar::before {
+  position: absolute;
+  content: "";
+  top: 50%;
+  right: 28rem;
+  transform: translateY(-50%);
+  width: 20rem;
+  height: 2px;
+  background-color: var(--text-light);
+}
+.social-icons{
+  font-size: 1.5rem;
+}

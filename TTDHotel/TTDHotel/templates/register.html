@@ -1,0 +1,290 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<div class="login-page d-flex justify-content-center align-items-center min-vh-100"
+     style="background: linear-gradient(120deg, #1d2671, #c33764); overflow: hidden;">
+    <div class="login-card glass-effect p-5 rounded-4 text-center" style="width: 100%; max-width: 420px;">
+        <form method="post" action="/register" enctype="multipart/form-data">
+            <!-- Full Name -->
+            <div class="form-floating mb-4">
+                <input type="text" class="form-control bg-light bg-opacity-25 text-dark shadow-sm rounded-pill"
+                       id="name" placeholder="Nhập họ tên" name="name" required>
+                <label for="name"><i class="bi bi-person-fill me-2"></i>Họ tên</label>
+            </div>
+
+            <div class="form-floating mb-4">
+                <input type="text" class="form-control bg-light bg-opacity-25 text-dark shadow-sm rounded-pill"
+                       id="phone" placeholder="Nhập số điện thoại" name="phone" required>
+                <label for="phone"><i class="bi bi-person-fill me-2"></i>Số điện thoại</label>
+            </div>
+
+            <div class="form-floating mb-4">
+                <input type="tel" class="form-control bg-light bg-opacity-25 text-dark shadow-sm rounded-pill"
+                       id="cmnd" placeholder="Nhập số điện thoại" name="cmnd" required>
+                <label for="cmnd"><i class="bi bi-person-fill me-2"></i>Căng cước/chứng minh thư</label>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label" style="color: #ffffff"><i class="bi bi-check-circle me-2"></i>Loại khách hàng</label>
+                <div class="custom-radio-container">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="option" id="option1" value="1" checked>
+                        <label class="form-check-label" for="option1">Nội địa</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="option" id="option2" value="2">
+                        <label class="form-check-label" for="option2">Nước ngoài</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Username -->
+            <div class="form-floating mb-4">
+                <input type="text" class="form-control bg-light bg-opacity-25 text-dark shadow-sm rounded-pill"
+                       id="username" placeholder="Tài khoản" name="username" required>
+                <label for="username"><i class="bi bi-person-fill me-2"></i>Tài khoản</label>
+            </div>
+
+            <!-- Password -->
+            <div class="form-floating mb-4">
+                <input type="password" class="form-control bg-light bg-opacity-25 text-dark shadow-sm rounded-pill"
+                       id="password" placeholder="Mật khẩu" name="password" required>
+                <label for="password"><i class="bi bi-lock-fill me-2"></i>Mật khẩu</label>
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="form-floating mb-4">
+                <input type="password" class="form-control bg-light bg-opacity-25 text-dark shadow-sm rounded-pill"
+                       id="confirm" placeholder="Nhập lại mật khẩu" name="confirm" required>
+                <label for="confirm"><i class="bi bi-lock-fill me-2"></i>Nhập lại mật khẩu</label>
+            </div>
+
+            <!-- Avatar -->
+            <div class="mb-4">
+                <label for="avatar"
+                       class="custom-file-upload d-flex flex-column align-items-center justify-content-center p-3">
+                    <div class="upload-icon mb-2">
+                        <i class="bi bi-camera text-light" style="font-size: 2rem;"></i>
+                    </div>
+                    <p class="text-light mb-0">Nhấp để tải ảnh đại diện</p>
+                    <input type="file" id="avatar" name="avatar" accept="image/*" hidden>
+                </label>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="d-grid mb-4">
+                <button class="btn btn-gradient btn-lg rounded-pill" type="submit">
+                    <i class="bi bi-person-plus me-2"></i>Đăng ký
+                </button>
+            </div>
+
+            <!-- Go to Login -->
+            <div class="text-center mt-3">
+                <p class="text-light">Bạn đã có tài khoản? <a href="/login" class="text-info text-decoration-none">Đăng
+                    nhập</a></p>
+            </div>
+        </form>
+
+        <!-- Social Media -->
+        <div class="mt-5">
+            <p class="text-light">Or sign in with</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="/login_google" class="btn btn-social shadow" style="background-color: #db4437;"><i
+                        class="bi bi-google text-white"></i></a>
+                <a href="/login_facebook" class="btn btn-social shadow" style="background-color: #4267B2;"><i
+                        class="bi bi-facebook text-white"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/loadImage.js') }}" defer></script>
+{% endblock %}
+
+<style>
+    /* Logo Container */
+    .logo-container {
+        position: relative;
+    }
+
+    /* Logo */
+    .logo-image {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Soft Glow */
+    .soft-glow {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 70%);
+        animation: slow-pulse 3s infinite ease-in-out;
+        z-index: -1;
+    }
+
+    @keyframes slow-pulse {
+        0%, 100% {
+            transform: scale(1);
+            opacity: 0.6;
+        }
+        50% {
+            transform: scale(1.1);
+            opacity: 1;
+        }
+    }
+
+    /* Glass Effect */
+    .glass-effect {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .glass-effect:hover {
+        transform: scale(1);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Button Gradient */
+    .btn-gradient {
+        background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        color: white;
+        border: none;
+        box-shadow: 0 4px 15px rgba(255, 120, 130, 0.4);
+    }
+
+    .btn-gradient:hover {
+        background: linear-gradient(135deg, #ff7eb3, #ff758c);
+        box-shadow: 0 6px 20px rgba(255, 120, 130, 0.7);
+    }
+
+    /* Social Buttons */
+    .btn-social {
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        font-size: 20px;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .btn-social:hover {
+        transform: scale(1.1);
+    }
+
+    .btn-outline-light {
+        color: white;
+        border-color: rgba(255, 255, 255, 0.6);
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .btn-outline-light:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+    }
+    a.text-info {
+        transition: color 0.3s ease;
+    }
+
+    a.text-info:hover {
+        color: #ff758c;
+    }
+    .custom-file-upload {
+        border: 2px dashed rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.1);
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .custom-file-upload:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .upload-icon i {
+        transition: transform 0.3s ease;
+    }
+
+    .custom-file-upload:hover .upload-icon i {
+        transform: scale(1.1);
+    }
+    .form-check-input[type="radio"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid #ff758c;
+        outline: none;
+        background-color: #fff;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .form-check-input[type="radio"]:checked {
+        background-color: #ff758c;
+        border-color: #ff758c;
+    }
+
+    .form-check-input[type="radio"]:checked::before {
+        content: "";
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #fff;
+        transition: all 0.3s ease;
+    }
+
+    /* Hover Effects */
+    .form-check-input[type="radio"]:hover {
+        border-color: #ff7eb3;
+        transform: scale(1.1);
+    }
+
+    .form-check-label {
+        font-size: 16px;
+        color: #fff;
+        margin-left: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    /* Label Hover Effects */
+    .form-check-label:hover {
+        color: #ff758c;
+    }
+
+    /* Focus Effect */
+    .form-check-input[type="radio"]:focus {
+        box-shadow: 0 0 0 2px rgba(255, 120, 130, 0.5);
+    }
+
+    /* Styling the radio button container */
+    .mb-4 {
+        margin-bottom: 1.5rem;
+    }
+
+    .custom-radio-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,270 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+
+<section class="container py-4">
+    <!-- Bộ lọc -->
+    <div class="booking__container mt-5"
+         style="position: static; transform:none; margin: auto; width: 30%; padding: 0 30px; border-radius: 50px;">
+        <form action="/filter_category" method="POST" class="d-flex justify-content-between">
+            <!-- Loại phòng -->
+            <div class="form__group" style="width: 28%; margin: 15px;">
+                <div class="input__group">
+                    <label>Loại phòng</label>
+                </div>
+                <select name="loai_phong" class="form-select">
+                    <option value="">-- Chọn loại phòng --</option>
+                    {% for p in list_category %}
+                    <option value="{{ p.id }}" {% if p.id== selected_value %}selected{% endif %}>{{ p.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Nút tìm kiếm -->
+            <div class="d-flex justify-content-center align-items-center">
+                <button type="submit" class="btn"><i class="ri-search-line"></i></button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Product Section -->
+<section class="container py-4">
+    <div class="row justify-content-center flex-row flex-wrap">
+        {% for p in categories %}
+        <div class="col-md-4 col-12 mb-4">
+            <div class="card shadow-lg border-0 rounded-lg overflow-hidden">
+                <a href="/category/{{ p.id }}">
+                    <img class="card-img-top img-fluid" src="{{ p.image }}" alt="{{ p.name }}"
+                         style="height: 300px; object-fit: cover; transition: transform 0.3s ease-in-out;">
+                </a>
+                <div class="card-body">
+                    <!-- Thêm icon trước tên phòng -->
+                    <h5 class="card-title">
+                        <i class="fas fa-bed text-primary"></i> {{ p.name }}
+                    </h5>
+
+                    <!-- Thêm icon trước giá tiền -->
+                    <p class="card-title text-danger font-weight-bold">
+                        <i class="fas fa-tags text-success"></i> {{ "{:,}".format(p.price)}} VNĐ
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <p class="col-12 text-center">Không có sản phẩm nào.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<style>
+    /* Cập nhật layout của các sản phẩm */
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;  /* Cách đều các thẻ card */
+        gap: 20px;  /* Khoảng cách giữa các thẻ card */
+    }
+
+    /* Cập nhật card để chiếm 1/3 chiều rộng của col */
+    .col-md-4 {
+        flex: 0 0 calc(33.333% - 20px); /* Mỗi card chiếm 1/3 chiều rộng với khoảng cách */
+        margin-bottom: 20px;  /* Khoảng cách dưới mỗi thẻ card */
+    }
+
+    /* Cập nhật card để chiếm 100% chiều rộng của col */
+    .card {
+        display: flex;
+        flex-direction: column;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        height: 100%;
+        background-color: #fff;
+    }
+
+    .card-body {
+        flex-grow: 1;
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-bottom: 2px solid #f1f1f1;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        font-style: bold;
+        color: #FF0000;
+        margin-bottom: 12px;
+        transition: color 0.3s ease;
+    }
+
+    .card-title:hover {
+        color: #ff5733;
+    }
+
+    .card-text {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .pagination .page-link {
+        color: #007bff;
+        background: linear-gradient(90deg, #e3f2fd, #e0f7fa);
+        border: none;
+        border-radius: 5px;
+        margin: 0 5px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .pagination .page-link:hover {
+        background: linear-gradient(90deg, #007bff, #0056b3);
+        color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .pagination .page-item.active .page-link {
+        background: linear-gradient(90deg, #42a5f5, #1e88e5);
+        color: white;
+        font-weight: bold;
+        border: none;
+    }
+
+    .pagination .page-item.disabled .page-link {
+        background: #f8f9fa;
+        color: #6c757d;
+    }
+
+    .btn {
+        transition: transform 0.3s ease, background-color 0.4s ease, box-shadow 0.3s ease;
+        border-radius: 50%; /* Perfectly circular */
+        font-weight: 600;
+        padding: 20px;
+        width: 70px; /* Increased size for more prominence */
+        height: 70px; /* Equal height and width */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(45deg, #42a5f5, #1e88e5); /* Gradient for more visual appeal */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow */
+        border: none;
+    }
+
+    .btn:hover {
+        transform: scale(1.15); /* Increased scaling effect on hover */
+        background: linear-gradient(45deg, #1e88e5, #42a5f5); /* Inverted gradient */
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
+    }
+
+    .form-select, .btn {
+        height: 50px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .booking__container {
+        background-color: #f9f9f9;
+        border-radius: 20px; /* Rounded edges for filter section */
+        padding: 30px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .booking__container .form__group {
+        margin-bottom: 20px;
+    }
+
+    .booking__container label {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .booking__container .form-select,
+    .booking__container input[type="date"],
+    .booking__container button {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+        border-radius: 50px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .booking__container .form-select:focus,
+    .booking__container input[type="date"]:focus {
+        border-color: #42a5f5;
+        outline: none;
+    }
+
+    .booking__container button {
+        background-color: #42a5f5;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .booking__container button:hover {
+        background-color: #1e88e5;
+        transform: scale(1.05);
+    }
+
+    .booking__container button i {
+        font-size: 1.5rem;
+    }
+
+    .booking__container .form__group {
+        flex: 1;
+    }
+
+    .booking__container .form__group label {
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    @media (max-width: 768px) {
+        .booking__container {
+            width: 100%;
+            padding: 15px;
+        }
+
+        .booking__container form {
+            flex-direction: column;
+        }
+
+        .booking__container .form__group {
+            width: 100%;
+        }
+    }
+    .card-skeleton {
+        background: linear-gradient(90deg, #e0e0e0, #f3f3f3, #e0e0e0);
+        background-size: 200% 100%;
+        animation: skeleton-loading 1.5s infinite;
+    }
+
+    @keyframes skeleton-loading {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+    }
+</style>
+
+{% endblock %}

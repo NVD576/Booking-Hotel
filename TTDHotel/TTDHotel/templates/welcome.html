@@ -1,0 +1,174 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+Luxury Stay - Trang chủ
+{% endblock %}
+
+{% block content %}
+<style>
+    /* Inline tối thiểu, các styles chính chuyển qua css.css */
+    .hero {
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+    }
+
+    .hero video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+    }
+
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 1;
+    }
+
+    .hero-content {
+        z-index: 2;
+        animation: fadeIn 2s ease-in-out;
+    }
+
+    .hero h1 {
+        font-size: 4.5rem;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    .hero p {
+        font-size: 1.3rem;
+        margin-top: 20px;
+    }
+
+    .hero .btn {
+        margin-top: 30px;
+        padding: 15px 40px;
+        font-size: 1.2rem;
+    }
+
+    /* Nút cuộn mượt mà */
+    .scroll-btn {
+        position: absolute;
+        bottom: 30px;
+        z-index: 2;
+        color: white;
+        font-size: 2rem;
+        animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    /* Các Section khác */
+    section {
+        padding: 80px 0;
+    }
+
+    .about img {
+        border-radius: 20px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .about img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+    #gallery .img-fluid {
+        height: 250px; /* Đặt chiều cao cố định */
+        object-fit: cover; /* Đảm bảo ảnh không bị méo và luôn đầy đủ hình */
+    }
+</style>
+<!-- Hero Section -->
+<section class="hero">
+    <video autoplay muted loop playsinline>
+        <source src="https://videos.pexels.com/video-files/11050698/11050698-uhd_2560_1440_30fps.mp4" type="video/mp4">
+        Trình duyệt của bạn không hỗ trợ thẻ video.
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content" data-aos="fade-up">
+        <h1>Chào Mừng đến với <span class="text-primary">TTD - Booking Hotel</span></h1>
+        <p>Ngôi nhà của sự thoải mái và sang trọng.</p>
+        <a href="#about" class="btn btn-primary btn-lg">Tìm hiểu thêm</a>
+    </div>
+    <a href="#about" class="scroll-btn"><i class="fas fa-chevron-down"></i></a>
+</section>
+
+<!-- About Section -->
+<section id="about" class="container my-5">
+    <div class="row align-items-center">
+        <div class="col-md-6" data-aos="fade-right">
+            <h2>Về <span class="text-primary">Chúng Tôi</span></h2>
+            <p class="lead">Trải nghiệm đỉnh cao của sự sang trọng và thoải mái tại TTD - Booking Hotel. Các cơ sở vật chất đẳng cấp thế giới của chúng tôi được thiết kế để làm cho kỳ nghỉ của bạn trở nên khó quên.</p>
+            <ul>
+                <li>Phòng nghỉ sang trọng và rộng rãi</li>
+                <li>Ẩm thực cao cấp với các món ăn quốc tế</li>
+                <li>Các cơ sở spa và sức khỏe độc quyền</li>
+            </ul>
+        </div>
+        <div class="col-md-6" data-aos="fade-left">
+            <img src="https://www.vietnambooking.com/wp-content/uploads/2021/02/khach-san-ho-chi-minh-14.jpg" class="img-fluid rounded" alt="Nội thất khách sạn" loading="lazy">
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="py-5">
+    <div class="container text-center">
+        <h2 class="mb-4" data-aos="fade-up">Dịch Vụ <span class="text-primary">Của Chúng Tôi</span></h2>
+        <div class="row">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-swimmer fa-3x text-primary mb-3"></i>
+                <h4>Bể Bơi Vô Cực</h4>
+                <p>Thư giãn trong bể bơi vô cực tuyệt đẹp với tầm nhìn toàn cảnh đại dương.</p>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-utensils fa-3x text-primary mb-3"></i>
+                <h4>Ẩm Thực Cao Cấp</h4>
+                <p>Thưởng thức các món ăn đẳng cấp thế giới do các đầu bếp chuyên nghiệp chế biến.</p>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-spa fa-3x text-primary mb-3"></i>
+                <h4>Spa Sang Trọng</h4>
+                <p>Tái tạo cơ thể và tâm trí tại các cơ sở spa độc quyền của chúng tôi.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Our Gallery Section -->
+<section id="gallery" class="container">
+    <h2 class="text-center mb-4" data-aos="fade-up">Phòng Nghỉ Của <span class="text-primary">Chúng Tôi</span></h2>
+    <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-up">
+            <img src="https://q-xx.bstatic.com/xdata/images/hotel/840x460/483207820.jpg?k=d8955cd0981eea6cb5dcb5d749f370745f6393b6c86d85ffc643599318e0c49b&o=" class="img-fluid rounded" alt="Hình ảnh Gallery 1">
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+            <img src="https://www.vietnambooking.com/wp-content/uploads/2021/02/khach-san-ho-chi-minh-14.jpg" class="img-fluid rounded" alt="Hình ảnh Gallery 2">
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+            <img src="https://hoanghaihotel.vn/Data/images/tintuc/10032021170917-gioi-thieu-ve-khach-san-hoang-hai.jpg" class="img-fluid rounded" alt="Hình ảnh Gallery 3">
+        </div>
+    </div>
+</section>
+{% endblock %}

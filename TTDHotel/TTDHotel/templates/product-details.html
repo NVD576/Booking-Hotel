@@ -1,0 +1,302 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Product Detail{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="product-title text-center">{{ category.name }}</h1>
+        </div>
+    </div>
+
+    <div class="row align-items-center mt-4">
+        <div class="col-md-6 text-center">
+            <div class="product-image-container">
+                <img src="{{ category.image }}" class="img-fluid product-image" alt="Product Image"/>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h3 class="product-price text-center mb-4">{{ "{:,}".format(category.price)}} VNĐ</h3>
+            <div class="text-center">
+                {% if logged_in %}
+                <button class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#bookingModal">Đặt phòng
+                    ngay
+                </button>
+                {% else %}
+                <a href="/login" class="btn btn-secondary btn-lg">Đăng nhập để đặt phòng</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="product-description">
+                <p id="description-text" class="description-short">{{ category.description }}</p>
+                <a href="javascript:void(0);" id="toggle-description" onclick="toggleDescription()">Xem thêm</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12 text-center">
+            <h2 class="section-title">Sản phẩm liên quan</h2>
+        </div>
+        <div class="row mt-5 related-products">
+            {% for cate in categories %}
+            <div class="col-md-4">
+                <div class="card product-card">
+                    <img src="{{ cate.image }}" class="card-img-top" alt="Related Product">
+                    <div class="card-body">
+                        <h5 class="fas fa-bed text-primary">{{ cate.name }}</h5>
+                        <br><p class="fas fa-tags text-success">{{ "{:,}".format(cate.price)}} VNĐ</p>
+                        <br><a href="/category/{{ cate.id }}" class="btn btn-outline-primary">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+</div>
+
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-gradient">
+                <h5 class="modal-title" id="bookingModalLabel">Thông tin đặt phòng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="post" action="/booked">
+                <div class="modal-body">
+                    <div id="customer-fields">
+                        <div class="card mb-3" id="customer-1">
+                            <div class="card-header">Khách hàng 1</div>
+                            <div class="card-body">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control"
+                                           value="{{ customer.name if customer else ''}}" id="fullname-1" name="name[]"
+                                           placeholder="Họ và Tên" required>
+                                    <label for="fullname-1">Họ và Tên</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="tel" class="form-control"
+                                           value="{{ customer.phone if customer else '' }}" id="phone-1" name="phone[]"
+                                           placeholder="Số Điện Thoại" required>
+                                    <label for="phone-1">Số Điện Thoại</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control"
+                                           value="{{ customer.address if customer else ''}}" id="diachi-1"
+                                           name="address[]"
+                                           placeholder="Địa chỉ" required>
+                                    <label for="diachi-1">Địa chỉ</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control"
+                                           value="{{ customer.cmnd if customer else '' }}" id="cmnd-1" name="cmnd[]"
+                                           placeholder="Căn cước/chứng minh thư" required>
+                                    <label for="cmnd-1">Căn cước/chứng minh thư</label>
+                                </div>
+                                <div class="mb-4">
+                                    <label class="form-label">Loại khách hàng</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="option_1" id="option1"
+                                               value="1" checked>
+                                        <label class="form-check-label" for="option1">Nội địa</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="option_1" id="option2"
+                                               value="2">
+                                        <label class="form-check-label" for="option2">Ngoại địa</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-info mt-2" id="add-customer-btn">Thêm khách hàng</button>
+                    <div class="form-group mt-4">
+                        <label for="datepicker1">Chọn ngày nhận</label>
+                        <input type="text" class="form-control" id="datepicker1" name="check_in_date"
+                               placeholder="Chọn ngày nhận" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="datepicker2">Chọn ngày trả</label>
+                        <input type="text" class="form-control" id="datepicker2" name="check_out_date"
+                               placeholder="Chọn ngày trả" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-primary">Xác nhận</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="loader" id="loader"></div>
+
+<style>
+    .product-title {
+        font-size: 2.8rem;
+        font-weight: bold;
+        color: #5a67d8;
+        text-transform: uppercase;
+    }
+
+    .product-image-container {
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .product-image-container:hover {
+        transform: scale(1.05);
+    }
+
+    .product-price {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        color: white;
+        padding: 15px 30px;
+        border-radius: 10px;
+        font-size: 2.2rem;
+        text-align: center;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border: none;
+        border-radius: 30px;
+        padding: 10px 30px;
+        font-size: 1.3rem;
+        transition: transform 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .modal-header.bg-gradient {
+        background: linear-gradient(135deg, #764ba2, #667eea);
+        color: gray;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    .btn-close {
+        color: white;
+    }
+
+    .product-description {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        font-size: 1.2rem;
+    }
+
+    .description-short {
+        max-height: 60px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .product-card {
+        border: 1px solid #e0e0e0;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin-bottom: 30px;
+    }
+
+    .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .product-card .card-body {
+        padding: 20px;
+    }
+
+    .product-card img {
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        object-fit: cover;
+        height: 250px;
+        width: 100%;
+        transition: transform 0.3s ease;
+    }
+
+    .product-card img:hover {
+        transform: scale(1.05);
+    }
+
+    .product-card .card-title {
+        font-size: 1.6rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .product-card .card-text {
+        font-size: 1.1rem;
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+    .product-card .btn-outline-primary {
+        background: transparent;
+        border-color: #667eea;
+        color: #667eea;
+        padding: 8px 20px;
+        border-radius: 30px;
+        font-size: 1.1rem;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .product-card .btn-outline-primary:hover {
+        background-color: #667eea;
+        color: white;
+    }
+
+    /* Section Title */
+    .section-title {
+        font-size: 2.4rem;
+        font-weight: bold;
+        color: #5a67d8;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    /* Spacing and Centering for Related Products */
+    .related-products {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+
+    .related-products .col-md-4 {
+        flex: 0 0 calc(33.333% - 30px); /* Ensures 3 cards per row with space */
+        max-width: calc(33.333% - 30px);  /* Ensures 3 cards per row with space */
+        padding: 0; /* Remove padding from individual columns */
+    }
+
+    .related-products .col-md-4 .product-card {
+        margin-bottom: 30px;
+        width: 100%; /* Ensure the cards fit within the column */
+    }
+
+</style>
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/details.js') }}" defer></script>
+{% endblock %}
+{% endblock %}

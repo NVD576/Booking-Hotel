@@ -1,0 +1,604 @@
+/* Biến màu cho Dark Mode */
+:root {
+  --dark-bg: #121212;
+  --dark-primary: #1e1e1e;
+  --dark-text: #e0e0e0;
+  --dark-text-light: #b0b0b0;
+  --dark-accent: #4c6ef5;
+  --dark-extra-dark: #181818;
+}
+
+/* Body Dark Mode */
+body.dark-mode {
+  background: linear-gradient(135deg, var(--dark-bg), var(--dark-primary));
+  color: var(--dark-text);
+}
+
+/* Footer Dark Mode */
+.footer.dark-mode {
+  background-color: var(--dark-extra-dark);
+  color: var(--dark-text);
+}
+
+/* Các tiêu đề */
+.footer.dark-mode h3,
+.footer.dark-mode h4 {
+  color: var(--dark-text);
+}
+
+/* Văn bản Footer */
+.footer.dark-mode p {
+  color: var(--dark-text-light);
+}
+
+.footer.dark-mode p:hover {
+  color: var(--dark-text);
+}
+
+/* Thanh Footer Bar */
+.footer__bar.dark-mode {
+  color: var(--dark-text-light);
+}
+
+.footer__bar.dark-mode::before {
+  background-color: var(--dark-text-light);
+}
+
+/* Liên kết */
+.footer.dark-mode a {
+  color: var(--dark-accent);
+}
+
+.footer.dark-mode a:hover {
+  color: var(--dark-text);
+}
+/* Container Styling */
+.container {
+    max-width: 1200px;
+    padding: 15px;
+}
+
+/* Header Styling */
+h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #34495e;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+/* Dark Mode Header */
+body.dark-mode h1 {
+    color: #ecf0f1; /* Màu sáng cho dark mode */
+}
+
+/* Card Styling */
+.card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Dark Mode Card */
+body.dark-mode .card {
+    background-color: #34495e; /* Nền tối cho dark mode */
+    color: #ecf0f1; /* Màu chữ sáng cho dark mode */
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* Card Body Styling */
+.card-body {
+    padding: 20px;
+}
+
+/* Title Styling */
+h3.card-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* Dark Mode Title */
+body.dark-mode h3.card-title {
+    color: #ecf0f1; /* Màu sáng cho dark mode */
+}
+
+/* Icon Styling */
+.icon-large {
+    font-size: 3rem;
+    color: #3498db; /* Màu sáng */
+    flex-shrink: 0;
+}
+
+/* Dark Mode Icon */
+body.dark-mode .icon-large {
+    color: #f39c12; /* Màu sáng cho icon khi dark mode */
+}
+
+body.dark-mode .icon-large:hover {
+    color: #f1c40f; /* Màu hover sáng hơn khi dark mode */
+}
+
+.icon-large:hover {
+    color: #e74c3c;
+    transform: scale(1.1);
+    transition: all 0.2s ease-in-out;
+}
+
+/* Highlight Text */
+.highlight {
+    color: #e74c3c; /* Màu sáng */
+    font-weight: 700;
+}
+
+/* Dark Mode Highlight */
+body.dark-mode .highlight {
+    color: #f39c12; /* Màu sáng cho highlight khi dark mode */
+}
+
+/* List Styling */
+ul {
+    padding-left: 0;
+    list-style-type: none;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+/* Dark Mode List */
+body.dark-mode li {
+    color: #ecf0f1; /* Màu sáng cho danh sách khi dark mode */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .card-body {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .icon-large {
+        margin-bottom: 15px;
+    }
+
+    h3.card-title {
+        font-size: 1.5rem;
+    }
+}
+body.dark-mode .input__group {
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+body.dark-mode .input__group label {
+    color: #fff; /* Lighter text for labels */
+}
+
+body.dark-mode .form-select,
+body.dark-mode .form__group input,
+body.dark-mode .form__group select {
+    background-color: #444;
+    color: #fff;
+    border: 1px solid #666;
+}
+
+body.dark-mode .form-select:focus,
+body.dark-mode .form__group input:focus,
+body.dark-mode .form__group select:focus {
+    background-color: #555;
+    border-color: #777;
+}
+body.dark-mode .booking__container {
+    background-color: #333;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+body.dark-mode .product-description {
+    background-color: #333; /* Dark background for the description container */
+    padding: 15px;
+    border-radius: 10px; /* Rounded corners */
+}
+
+/* Styling for the description text */
+body.dark-mode #description-text {
+    color: #e0e0e0; /* Lighter text color for better readability */
+    background-color: #444; /* Slightly darker background */
+    padding: 10px;
+    border-radius: 8px; /* Optional: rounded corners */
+}
+
+/* Styling for the "Xem thêm" link */
+body.dark-mode #toggle-description {
+    color: #42a5f5; /* Light blue link color */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+/* Hover effect for the link */
+body.dark-mode #toggle-description:hover {
+    color: #1e88e5; /* Darker blue on hover */
+}
+body.dark-mode .modal-content {
+    background-color: #333; /* Dark background for modal */
+    color: #e0e0e0; /* Light text color */
+    border-radius: 10px;
+}
+
+/* Modal Header */
+body.dark-mode .modal-header {
+    background: linear-gradient(45deg, #42a5f5, #1e88e5); /* Gradient header */
+    color: #fff; /* Light text color */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* Close Button */
+body.dark-mode .modal-header .btn-close {
+    color: #e0e0e0; /* Light color for close button */
+}
+
+/* Modal Body */
+body.dark-mode .modal-body {
+    background-color: #444; /* Slightly lighter background for body */
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Form Fields */
+body.dark-mode .form-floating input,
+body.dark-mode .form-control {
+    background-color: #555; /* Dark background for inputs */
+    color: #e0e0e0; /* Light text */
+    border: 1px solid #777; /* Light border */
+    border-radius: 8px;
+}
+
+/* Form Labels */
+body.dark-mode .form-floating label {
+    color: #e0e0e0; /* Light label color */
+}
+
+/* Radio Buttons */
+body.dark-mode .form-check-input {
+    background-color: #777;
+    border-color: #777;
+}
+
+body.dark-mode .form-check-label {
+    color: #e0e0e0; /* Light text for radio buttons */
+}
+
+/* Button Styles */
+body.dark-mode .btn-info {
+    background-color: #1e88e5;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+body.dark-mode .btn-info:hover {
+    background-color: #42a5f5;
+}
+
+body.dark-mode .btn-primary {
+    background-color: #42a5f5;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+}
+
+body.dark-mode .btn-primary:hover {
+    background-color: #1e88e5;
+}
+
+body.dark-mode .btn-secondary {
+    background-color: #555;
+    color: #fff;
+}
+
+body.dark-mode .btn-secondary:hover {
+    background-color: #777;
+}
+
+/* Datepicker Styling */
+body.dark-mode #datepicker1,
+body.dark-mode #datepicker2 {
+    background-color: #555;
+    color: #e0e0e0;
+    border: 1px solid #777;
+    border-radius: 8px;
+}
+
+/* Hover effects for the add customer button */
+body.dark-mode #add-customer-btn {
+    background-color: #42a5f5;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+body.dark-mode #add-customer-btn:hover {
+    background-color: #1e88e5;
+}
+body .modal-content {
+    background-color: #fff;
+    color: #000;
+}
+
+body .modal-header {
+    background-color: #f8f9fa;
+    color: #000;
+}
+
+body .modal-body {
+    background-color: #fff;
+}
+
+body .modal-footer {
+    background-color: #f8f9fa;
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #fff;
+}
+
+body.dark-mode .modal-content {
+    background-color: #333;
+    color: #fff;
+}
+
+body.dark-mode .modal-header {
+    background-color: #212529;
+    color: #fff;
+}
+
+body.dark-mode .modal-body {
+    background-color: #343a40;
+    color: #fff;
+}
+
+body.dark-mode .modal-footer {
+    background-color: #212529;
+    color: #fff;
+}
+
+body.dark-mode .form-floating input {
+    background-color: #495057;
+    color: #fff;
+    border-color: #495057;
+}
+
+body.dark-mode .form-floating label {
+    color: #adb5bd;
+}
+
+body.dark-mode .btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+body.dark-mode .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+body.dark-mode .btn-close-white {
+    filter: invert(100%);
+}
+body.dark-mode .card {
+    background-color: #333;
+    color: #fff;
+}
+
+body.dark-mode .card h3 {
+    color: #fff;
+}
+
+body.dark-mode table {
+    background-color: #333;
+    color: #fff;
+}
+
+body.dark-mode .card .booking-details p {
+    color: #fff;
+}
+
+body.dark-mode table th, body.dark-mode table td {
+    color: #fff;
+}
+
+body.dark-mode .btn-gradient {
+    background: linear-gradient(45deg, #1e3a8a, #1b1e28);
+}
+
+body.dark-mode .container {
+    color: #fff;
+}
+
+body.dark-mode .container h2 {
+    color: #fff;
+}
+
+body.dark-mode .container a {
+    color: #fff;
+}
+
+body.dark-mode .container a:hover {
+    text-decoration: underline;
+}
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.dark-mode-text {
+    color: #e0e0e0 !important;
+}
+
+.dark-mode-input {
+    background-color: #333;
+    color: #e0e0e0;
+    border: 1px solid #444;
+}
+
+.dark-mode-button {
+    background: linear-gradient(135deg, #2b2b2b, #3a3a3a);
+    border: none;
+    box-shadow: none;
+}
+
+.dark-mode-button:hover {
+    background: linear-gradient(135deg, #444, #555);
+}
+
+.dark-mode-table th, .dark-mode-table td {
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+.dark-mode-table thead {
+    background-color: #444;
+}
+
+.dark-mode .card-rent {
+    background-color: #222;
+}
+
+.dark-mode .form-group input:focus {
+    box-shadow: none;
+    border-color: #555;
+}
+.dark-mode h3.text-center {
+    color: #000000;
+}
+.dark-mode .booking-details p {
+    color: #000000; /* Ensure the text inside the paragraphs is light */
+}
+
+.dark-mode .booking-details strong {
+    color: #000000; /* Light color for strong tags */
+}
+.dark-mode h4{
+    color: #000000
+}
+/* General Dark Mode Styles */
+#dark-mode {
+    background-color: #121212; /* Dark background */
+    color: #f9f9f9; /* Light text color */
+}
+
+/* Table styles */
+#dark-mode .table {
+    background: rgba(255, 255, 255, 0.1);  /* Transparent background for table */
+    backdrop-filter: blur(12px);  /* Glassmorphism effect */
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Light border for dark mode */
+}
+
+#dark-mode .table th, #dark-mode .table td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 1rem;
+    font-size: 1.1rem;
+    color: #f9f9f9; /* Light text for table cells */
+}
+
+/* Header styling */
+#dark-mode .table th {
+    background: linear-gradient(135deg, #007bff, #1e88e5);  /* Gradient header */
+    color: white;
+    font-weight: bold;
+    border-radius: 10px 10px 0 0;
+}
+
+/* Dark mode table rows */
+#dark-mode .table tbody tr:nth-of-type(odd) {
+    background-color: #1a1a1a;  /* Dark background for odd rows */
+}
+
+#dark-mode .table tbody tr:nth-of-type(even) {
+    background-color: #212121;  /* Slightly lighter background for even rows */
+}
+
+/* Hover effect for rows */
+#dark-mode .table-hover tbody tr:hover {
+    background-color: #333;  /* Darker hover color */
+    transform: translateY(-5px);  /* Hover animation for rows */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+/* Striped rows with smooth hover effect */
+#dark-mode .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #333;  /* Dark background for striped rows */
+}
+
+/* Responsive table */
+#dark-mode .table-responsive {
+    margin-top: 2rem;
+}
+
+/* Styling for buttons */
+#dark-mode .btn {
+    background: linear-gradient(135deg, #42a5f5, #1e88e5);  /* Gradient button */
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 12px 30px;
+    border-radius: 30px;
+    border: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+#dark-mode .btn:hover {
+    transform: translateY(-3px);  /* Hover lift effect */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);  /* Enhanced shadow on hover */
+}
+
+#dark-mode .btn:focus {
+    outline: none;
+}
+
+/* Custom transition effects for table */
+#dark-mode .table-striped tr {
+    transition: all 0.3s ease-in-out;
+}
+
+#dark-mode .table td {
+    font-size: 1rem;
+}
+
+/* Adjustments for dark mode table text */
+#dark-mode .table th, #dark-mode .table td {
+    color: #f9f9f9;  /* Ensures light text on dark backgrounds */
+}
+
+#dark-mode .table tbody tr:nth-of-type(odd) {
+    background-color: #333;  /* Darker background for odd rows */
+}
+
+#dark-mode .table tbody tr:nth-of-type(even) {
+    background-color: #444;  /* Slightly lighter background for even rows */
+}
+
+#dark-mode .table-hover tbody tr:hover {
+    background-color: #555;  /* Lighter hover effect in dark mode */
+}

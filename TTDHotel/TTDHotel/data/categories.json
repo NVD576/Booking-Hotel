@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Standard",
+    "price": 500000,
+    "description": "Phòng đơn giản, gia đình, không ban công, không sofa",
+    "image": "https://q-xx.bstatic.com/xdata/images/hotel/840x460/483207820.jpg?k=d8955cd0981eea6cb5dcb5d749f370745f6393b6c86d85ffc643599318e0c49b&o="
+  },
+  {
+    "id": 2,
+    "name": "Deluxe",
+    "price": 1000000,
+    "description": "Phòng rộng rãi, có ban công, sofa và phòng tắm sang trọng",
+    "image": "https://www.vietnambooking.com/wp-content/uploads/2021/02/khach-san-ho-chi-minh-14.jpg"
+  },
+  {
+    "id": 3,
+    "name": "VIP",
+    "price": 2000000,
+    "description": "Phòng rộng rãi, có ban công, sofa và phòng tắm sang trọng",
+    "image": "https://hoanghaihotel.vn/Data/images/tintuc/10032021170917-gioi-thieu-ve-khach-san-hoang-hai.jpg"
+  }
+]
